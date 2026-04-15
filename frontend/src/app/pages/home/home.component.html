@@ -1,0 +1,59 @@
+<div class="container">
+
+  <!-- Популярное -->
+  <h2 class="section-title">🔥 Popular Manga</h2>
+
+  <div class="horizontal-scroll">
+    <div class="card big" *ngFor="let manga of mangas">
+      <img src="https://via.placeholder.com/200x300" />
+
+      <div class="card-info">
+        <h3>{{ manga.title }}</h3>
+        <p>{{ manga.description }}</p>
+
+        <a [routerLink]="['/manga', manga.id]">Open</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Сейчас читают -->
+  <h2 class="section-title">📊 Now Reading</h2>
+
+  <div class="columns">
+
+    <div class="column">
+      <h3>New</h3>
+      <div *ngFor="let manga of mangas" class="mini-card">
+        <img src="https://via.placeholder.com/50" />
+        <div>
+          <p>{{ manga.title }}</p>
+          <span>Manga</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="column">
+      <h3>Trending</h3>
+      <div *ngFor="let manga of mangas" class="mini-card">
+        <img src="https://via.placeholder.com/50" />
+        <div>
+          <p>{{ manga.title }}</p>
+          <span>Manga</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="column">
+      <h3>Popular</h3>
+      <div *ngFor="let manga of mangas" class="mini-card">
+        <img src="https://via.placeholder.com/50" />
+        <div>
+          <p>{{ manga.title }}</p>
+          <span>Manga</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>

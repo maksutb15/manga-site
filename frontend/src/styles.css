@@ -1,1 +1,46 @@
-/* You can add global styles to this file, and also import other style files */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #020617;
+  padding: 10px 30px;
+  border-bottom: 1px solid #1e293b;
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 20px;
+  color: #facc15;
+}
+
+.menu {
+  display: flex;
+  gap: 20px;
+}
+
+.menu a {
+  color: #cbd5f5;
+  cursor: pointer;
+}
+
+.menu a:hover {
+  color: white;
+}
+
+.auth {
+  display: flex;
+  gap: 10px;
+}
+
+.login {
+  color: #38bdf8;
+}
+
+.register {
+  background: #f97316;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+}
