@@ -3,13 +3,16 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from django.contrib.auth import authenticate
 from rest_framework.authtoken.models import Token
-
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.decorators import permission_classes
+from django.shortcuts import get_object_or_404
 from .models import Manga, Comment
 from .serializers import MangaSerializer, CommentSerializer
 
 
 # 🔹 Manga LIST + CREATE (FBV)
 @api_view(['GET', 'POST'])
+@permission_classes([IsAuthenticated])
 def manga_list(request):
     if request.method == 'GET':
         mangas = Manga.objects.all()
@@ -27,12 +30,12 @@ def manga_list(request):
 # 🔹 Manga DETAIL (CBV)
 class MangaDetail(APIView):
     def get(self, request, pk):
-        manga = Manga.objects.get(pk=pk)
+        manga = get_object_or_404(Manga, pk=pk)
         serializer = MangaSerializer(manga)
         return Response(serializer.data)
 
     def put(self, request, pk):
-        manga = Manga.objects.get(pk=pk)
+        manga = get_object_or_404(Manga, pk=pk)
         serializer = MangaSerializer(manga, data=request.data)
         if serializer.is_valid():
             serializer.save()
@@ -42,7 +45,7 @@ class MangaDetail(APIView):
     def delete(self, request, pk):
         manga = Manga.objects.get(pk=pk)
         manga.delete()
-        return Response()
+        return Response(status=204)
 
 
 # 🔹 Comments (FBV)
@@ -76,6 +79,7 @@ def login(request):
     return Response({'error': 'Invalid credentials'})
 
 @api_view(['POST'])
+@permission_classes([IsAuthenticated])
 def logout(request):
     try:
         token = Token.objects.get(user=request.user)
