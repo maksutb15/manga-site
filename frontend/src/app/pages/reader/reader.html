@@ -1,0 +1,24 @@
+<div class="reader-page">
+
+  <div class="top-bar">
+
+    <a [routerLink]="['/catalog']" class="btn">← Back</a>
+
+    <div class="title">
+      {{ manga | titlecase }} - Chapter {{ chapter }}
+    </div>
+
+    <div class="nav-buttons">
+      <button (click)="prevChapter()">Prev</button>
+      <button (click)="nextChapter()">Next</button>
+    </div>
+
+  </div>
+
+  <iframe
+    [src]="'assets/pdf/' + manga + '/chapter' + chapter + '.pdf'"
+    width="100%"
+    height="900px">
+  </iframe>
+
+</div>

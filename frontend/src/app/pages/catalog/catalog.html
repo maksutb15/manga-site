@@ -1,2 +1,67 @@
-<h1>Catalog</h1>
-<p>List of manga will be here</p>
+<div class="catalog-page">
+
+  <aside class="sidebar">
+
+    <h2>Filters</h2>
+
+    <input
+      type="text"
+      placeholder="Search manga..."
+      [(ngModel)]="searchText"
+    >
+
+    <select [(ngModel)]="selectedGenre">
+      <option value="">All Genres</option>
+      <option value="Action">Action</option>
+      <option value="Romance">Romance</option>
+      <option value="Fantasy">Fantasy</option>
+      <option value="Comedy">Comedy</option>
+      <option value="Drama">Drama</option>
+      <option value="Sports">Sports</option>
+    </select>
+
+    <select [(ngModel)]="sortBy">
+      <option value="">Sort</option>
+      <option value="rating">Top Rating</option>
+      <option value="title">A-Z</option>
+    </select>
+
+  </aside>
+
+  <main class="catalog-content">
+
+    <h1 class="catalog-title">📚 Manga Catalog</h1>
+
+    <div class="catalog-grid">
+
+      <div
+        class="manga-card"
+        *ngFor="let manga of filteredMangas()"
+        [routerLink]="['/manga', manga.id]"
+      >
+
+        <img [src]="manga.image" [alt]="manga.title">
+
+        <div class="manga-info">
+          <h3>{{ manga.title }}</h3>
+
+          <p>
+            {{ manga.country }} • {{ manga.type }}
+          </p>
+
+          <span>
+            {{ manga.genres.join(', ') }}
+          </span>
+
+          <div class="rating">
+            ⭐ {{ manga.rating }}
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+</div>

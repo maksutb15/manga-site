@@ -1,1 +1,59 @@
-<p>manga-detail works!</p>
+<div class="detail-page" *ngIf="manga">
+
+  <a routerLink="/catalog" class="back-btn">← Back to Catalog</a>
+
+  <div class="top-section">
+
+    <img [src]="manga.image" class="cover">
+
+    <div class="info">
+
+      <h1>{{ manga.title }}</h1>
+
+      <p><strong>Country:</strong> {{ manga.country }}</p>
+      <p><strong>Type:</strong> {{ manga.type }}</p>
+      <p><strong>Demographic:</strong> {{ manga.demographic }}</p>
+      <p><strong>Rating:</strong> ⭐ {{ manga.rating }}</p>
+
+      <div class="genres">
+        <span *ngFor="let g of manga.genres">
+          {{ g }}
+        </span>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="block">
+    <h2>Description</h2>
+    <p>{{ manga.description }}</p>
+  </div>
+
+  <div class="block">
+    <h2>Chapters</h2>
+
+    <div class="chapter-list">
+
+      <a
+        class="chapter-item"
+        *ngFor="let ch of [1,2,3,4,5]"
+        [routerLink]="['/read', manga.title.toLowerCase().replaceAll(' ', ''), ch]"
+      >
+        📖 Chapter {{ ch }}
+      </a>
+
+    </div>
+
+  </div>
+
+  <div class="block">
+    <h2>Comments</h2>
+
+    <div class="comment">🔥 Amazing manga!</div>
+    <div class="comment">⭐ Must read!</div>
+    <div class="comment">💯 One of my favorites.</div>
+
+  </div>
+
+</div>
