@@ -1,0 +1,94 @@
+<div class="container">
+
+<h1 class="section-title">🔥 Popular Manga</h1>
+
+<div class="cards">
+
+<div class="card"
+*ngFor="let manga of popular"
+[routerLink]="['/manga', manga.id]">
+
+<img [src]="manga.image">
+
+<h3>{{ manga.title }}</h3>
+
+<p>{{ manga.country }} • {{ manga.demographic }}</p>
+
+</div>
+
+</div>
+
+<div class="country-grid">
+
+<div class="country-block">
+
+<h2>🇰🇷 Korea</h2>
+
+<div class="mini-list">
+
+<div class="mini-card"
+*ngFor="let manga of korea"
+[routerLink]="['/manga', manga.id]">
+
+<img [src]="manga.image">
+
+<div class="mini-info">
+<h4>{{ manga.title }}</h4>
+<span>{{ manga.genres[0] }}</span>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="country-block">
+
+<h2>🇯🇵 Japan</h2>
+
+<div class="mini-list">
+
+<div class="mini-card"
+*ngFor="let manga of japan"
+[routerLink]="['/manga', manga.id]">
+
+<img [src]="manga.image">
+
+<div class="mini-info">
+<h4>{{ manga.title }}</h4>
+<span>{{ manga.genres[0] }}</span>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="country-block">
+
+<h2>🇨🇳 China</h2>
+
+<div class="mini-list">
+
+<div class="mini-card"
+*ngFor="let manga of china"
+[routerLink]="['/manga', manga.id]">
+
+<img [src]="manga.image">
+
+<div class="mini-info">
+<h4>{{ manga.title }}</h4>
+<span>{{ manga.genres[0] }}</span>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>

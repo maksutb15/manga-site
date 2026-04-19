@@ -1,16 +1,15 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './pages/home/home.component';
-import { Catalog } from './pages/catalog/catalog';
-import { Forum } from './pages/forum/forum';
-import { LoginComponent } from './pages/login/login.component';
+
+import { Home } from './pages/home/home';
+import { Login } from './pages/login/login';
+import { MangaDetail } from './pages/manga-detail/manga-detail';
 import { Register } from './pages/register/register';
-import { MangaDetailComponent } from './pages/manga-detail/manga-detail.component';
 
 export const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'catalog', component: Catalog },
-  { path: 'forum', component: Forum },
-  { path: 'login', component: LoginComponent },
+  { path: '', component: Home },
+  { path: 'login', component: Login },
   { path: 'register', component: Register },
-  { path: 'manga/:id', component: MangaDetailComponent }
+  { path: 'manga/:id', component: MangaDetail },
+
+  { path: '**', redirectTo: '' }
 ];

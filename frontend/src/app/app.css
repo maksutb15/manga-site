@@ -1,98 +1,70 @@
 body {
   margin: 0;
-  background: #0b0f19;
-  color: #e5e7eb;
   font-family: Arial, sans-serif;
+  background: #f8fafc;
 }
 
-/* HEADER */
 .header {
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
 
-  background: #111827;
-  padding: 12px 25px;
-
-  border-bottom: 1px solid #1f2937;
-
-  position: relative;
-  z-index: 10;
+  padding: 16px 35px;
+  background: white;
+  border-bottom: 1px solid #e5e7eb;
 }
 
-/* ЛЕВАЯ ЧАСТЬ */
 .left {
   display: flex;
   align-items: center;
-  gap: 25px;
+  gap: 30px;
 }
 
-/* ЛОГО */
 .logo {
+  font-size: 48px;
   font-weight: bold;
-  font-size: 18px;
-  color: #8b5cf6;
-  cursor: pointer;
 }
 
-/* МЕНЮ */
+.logo .m {
+  color: black;
+}
+
+.logo .b {
+  color: #7c3aed;
+}
+
 .menu {
   display: flex;
-  align-items: center;
-  gap: 15px;
+  gap: 24px;
 }
 
 .menu a {
-  color: #e5e7eb;
   text-decoration: none;
-  font-size: 14px;
-  transition: 0.2s;
+  color: #111827;
+  font-size: 20px;
 }
 
 .menu a:hover {
-  color: #22d3ee;
+  color: #7c3aed;
 }
 
-/* ПРАВАЯ ЧАСТЬ (КНОПКИ) */
 .auth {
   display: flex;
-  align-items: center;
   gap: 10px;
 }
 
-/* ОБЩИЙ СТИЛЬ КНОПОК */
 .auth a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  height: 34px;
-  padding: 0 14px;
-
-  font-size: 14px;
   text-decoration: none;
-  border-radius: 6px;
-
-  transition: 0.2s;
-  cursor: pointer;
+  padding: 10px 18px;
+  border-radius: 10px;
 }
 
-/* LOGIN */
 .auth a:first-child {
-  color: #e5e7eb;
-  border: 1px solid #1f2937;
+  border: 1px solid #ddd;
+  color: black;
 }
 
-.auth a:first-child:hover {
-  background: #1f2937;
-}
-
-/* REGISTER */
 .auth a:last-child {
-  background: #8b5cf6;
-  color: white;
-}
-
-.auth a:last-child:hover {
   background: #7c3aed;
+  color: white;
 }
