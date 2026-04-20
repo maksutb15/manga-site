@@ -1,0 +1,40 @@
+<div class="profile-page">
+
+  <div class="profile-card">
+
+    <div class="avatar">
+      {{ getUsername().charAt(0).toUpperCase() }}
+    </div>
+
+    <h1>{{ getUsername() }}</h1>
+    <p class="subtitle">Manga Reader Account</p>
+
+    <div class="stats">
+
+      <div class="stat-box">
+        <span class="number">24</span>
+        <span class="label">Favorites</span>
+      </div>
+
+      <div class="stat-box">
+        <span class="number">12</span>
+        <span class="label">Read</span>
+      </div>
+
+      <div class="stat-box">
+        <span class="number">5</span>
+        <span class="label">Following</span>
+      </div>
+
+    </div>
+
+    <div class="info">
+      <p>Status: <span>Online</span></p>
+      <p>Role: <span>User</span></p>
+    </div>
+
+    <button (click)="logout()">Logout</button>
+
+  </div>
+
+</div>

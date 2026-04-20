@@ -18,9 +18,22 @@
   </div>
 
   <div class="auth">
+
+  <ng-container *ngIf="!isLoggedIn(); else logged">
+
     <a routerLink="/login" class="login">Login</a>
     <a routerLink="/register" class="register">Register</a>
-  </div>
+
+  </ng-container>
+
+  <ng-template #logged>
+
+    <a routerLink="/profile" class="login">{{ getUsername() }}</a>
+    <button class="register" (click)="logout()">Logout</button>
+
+  </ng-template>
+
+</div>
 
 </header>
 

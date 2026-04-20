@@ -9,6 +9,7 @@ import { Popular } from './pages/popular/popular';
 import { Genres } from './pages/genres/genres';
 import { Forum } from './pages/forum/forum';
 import { Reader } from './pages/reader/reader';
+import { Profile } from './pages/profile/profile';
 
 export const routes: Routes = [
   { path: '', component: Home },
@@ -19,10 +20,12 @@ export const routes: Routes = [
 
   { path: 'login', component: Login },
   { path: 'register', component: Register },
-  { path:'read/:manga/:chapter', component: Reader },
+
+  { path: 'read/:manga/:chapter', component: Reader },
 
   { path: 'manga/:id', component: MangaDetail },
-  
 
-  { path: '**', redirectTo: '' }
+  { path: 'profile', component: Profile },
+
+  { path: '**', redirectTo: '' },
 ];

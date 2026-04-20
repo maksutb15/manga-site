@@ -1,9 +1,48 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule, FormsModule, HttpClientModule],
   templateUrl: './login.html',
-  styleUrl: './login.css',
+  styleUrl: './login.css'
 })
-export class Login {}
+export class Login {
+
+  username = '';
+  password = '';
+  error = '';
+
+  constructor(
+    private http: HttpClient,
+    private router: Router
+  ) {}
+
+  login() {
+    this.error = '';
+
+    this.http.post<any>('http://127.0.0.1:8000/api/login/', {
+      username: this.username,
+      password: this.password
+    }).subscribe({
+      next: (res) => {
+
+        if (typeof window !== 'undefined') {
+          localStorage.setItem('access', res.access);
+          localStorage.setItem('refresh', res.refresh);
+          localStorage.setItem('username', this.username);
+        }
+
+        this.router.navigate(['/']);
+      },
+
+      error: () => {
+        this.error = 'Wrong username or password';
+      }
+    });
+  }
+}

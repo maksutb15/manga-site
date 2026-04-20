@@ -1,0 +1,38 @@
+.forum-page{
+  max-width:900px;
+  margin:auto;
+  padding:30px;
+  color:white;
+}
+
+.create-post,
+.post{
+  background:#1a1a1a;
+  padding:20px;
+  border-radius:18px;
+  margin-bottom:20px;
+}
+
+input,textarea{
+  width:100%;
+  margin:8px 0;
+  padding:10px;
+  border:none;
+  border-radius:10px;
+}
+
+button{
+  padding:10px 18px;
+  border:none;
+  border-radius:10px;
+  background:#8b3dff;
+  color:white;
+  cursor:pointer;
+}
+
+.reply{
+  margin-top:10px;
+  background:#222;
+  padding:10px;
+  border-radius:10px;
+}

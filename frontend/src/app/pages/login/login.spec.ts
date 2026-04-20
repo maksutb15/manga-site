@@ -1,22 +1,40 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { Router } from '@angular/router';
 
-import { Login } from './login';
+@Component({
+  selector: 'app-login',
+  standalone: true,
+  imports: [CommonModule, FormsModule, HttpClientModule],
+  templateUrl: './login.html',
+  styleUrl: './login.css'
+})
+export class Login {
 
-describe('Login', () => {
-  let component: Login;
-  let fixture: ComponentFixture<Login>;
+  username = '';
+  password = '';
+  error = '';
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [Login],
-    }).compileComponents();
+  constructor(
+    private http: HttpClient,
+    private router: Router
+  ) {}
 
-    fixture = TestBed.createComponent(Login);
-    component = fixture.componentInstance;
-    await fixture.whenStable();
-  });
+  login() {
+    this.http.post<any>('http://127.0.0.1:8000/api/login/', {
+      username: this.username,
+      password: this.password
+    }).subscribe({
+      next: (res) => {
+        localStorage.setItem('token', res.access);
+        this.router.navigate(['/']);
+      },
+      error: () => {
+        this.error = 'Wrong username or password';
+      }
+    });
+  }
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+}

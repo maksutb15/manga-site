@@ -1,2 +1,33 @@
-<h1>Forum</h1>
-<p>Questions and discussions</p>
+<div class="forum-page">
+
+  <h1>Forum</h1>
+
+  <div class="create-post">
+    <input [(ngModel)]="title" placeholder="Question title">
+    <textarea [(ngModel)]="text" placeholder="Write your question"></textarea>
+    <button (click)="createPost()">Post</button>
+  </div>
+
+  <div class="post" *ngFor="let post of posts">
+
+    <h2>{{ post.title }}</h2>
+    <p>{{ post.text }}</p>
+    <small>by {{ post.user }}</small>
+
+   <div class="actions" *ngIf="isOwner(post.user)">
+  <button (click)="editPost(post)">Edit</button>
+  <button (click)="deletePost(post.id)">Delete</button>
+</div>
+
+    <div class="reply-box">
+      <input #replyInput placeholder="Write answer">
+      <button (click)="reply(post.id, replyInput.value)">Reply</button>
+    </div>
+
+    <div class="reply" *ngFor="let reply of post.replies">
+      <b>{{ reply.user }}</b>: {{ reply.text }}
+    </div>
+
+  </div>
+
+</div>

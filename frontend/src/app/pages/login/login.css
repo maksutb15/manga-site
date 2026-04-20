@@ -18,4 +18,10 @@ button {
   background: #7c3aed;
   color: white;
   border: none;
+  cursor: pointer;
+}
+
+p {
+  color: red;
+  margin-top: 10px;
 }
