@@ -1,1 +1,23 @@
-<p>genres works!</p>
+<div class="genres-page">
+
+<h1>Browse Manga Genres</h1>
+
+<div class="grid">
+
+<a
+class="card"
+*ngFor="let genre of genres"
+[routerLink]="['/catalog']"
+[queryParams]="{ genre: genre.name }">
+
+<img [src]="genre.image">
+
+<div class="overlay">
+{{ genre.name }}
+</div>
+
+</a>
+
+</div>
+
+</div>

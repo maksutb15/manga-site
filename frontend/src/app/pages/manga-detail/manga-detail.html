@@ -30,22 +30,24 @@
     <p>{{ manga.description }}</p>
   </div>
 
-  <div class="block">
-    <h2>Chapters</h2>
+    <div class="block">
+       <h2>Chapters</h2>
 
-    <div class="chapter-list">
+        <div class="chapter-list">
 
-      <a
-        class="chapter-item"
-        *ngFor="let ch of [1,2,3,4,5]"
-        [routerLink]="['/read', manga.title.toLowerCase().replaceAll(' ', ''), ch]"
-      >
-        📖 Chapter {{ ch }}
-      </a>
+           <a
+      *ngFor="let ch of [1,2,3,4,5]"
+      class="chapter-item"
+      [routerLink]="['/read', manga.slug, ch]">
 
-    </div>
+      📖 Chapter {{ ch }}
 
-  </div>
+            </a>
+
+        </div>
+     </div>
+
+
 
   <div class="block">
     <h2>Comments</h2>

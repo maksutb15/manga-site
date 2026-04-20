@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { RouterLink, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-catalog',
@@ -349,6 +349,17 @@ rating:8.9
 }
 
  ];
+ constructor(private route: ActivatedRoute) {}
+
+ngOnInit() {
+  this.route.queryParamMap.subscribe(params => {
+    const genre = params.get('genre');
+
+    if (genre) {
+      this.selectedGenre = genre;
+    }
+  });
+}
 
   filteredMangas() {
   let data = this.mangas;

@@ -1,46 +1,89 @@
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: #020617;
-  padding: 10px 30px;
-  border-bottom: 1px solid #1e293b;
+html,
+body{
+margin:0;
+padding:0;
+background:#0b0b10;
+color:white;
+min-height:100%;
+overflow-x:hidden;
 }
 
-.logo {
-  font-weight: bold;
-  font-size: 20px;
-  color: #facc15;
+app-root{
+display:block;
+min-height:100vh;
+background:#0b0b10;
 }
 
-.menu {
-  display: flex;
-  gap: 20px;
+.header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:#020617;
+padding:14px 30px;
+border-bottom:1px solid #1e293b;
+position:sticky;
+top:0;
+z-index:1000;
 }
 
-.menu a {
-  color: #cbd5f5;
-  cursor: pointer;
+.logo{
+font-weight:700;
+font-size:34px;
+color:#8b5cf6;
+cursor:pointer;
+text-decoration:none;
 }
 
-.menu a:hover {
-  color: white;
+.menu{
+display:flex;
+gap:28px;
+align-items:center;
 }
 
-.auth {
-  display: flex;
-  gap: 10px;
+.menu a{
+color:#cbd5e1;
+cursor:pointer;
+text-decoration:none;
+font-size:17px;
+transition:.2s;
 }
 
-.login {
-  color: #38bdf8;
+.menu a:hover{
+color:#8b5cf6;
 }
 
-.register {
-  background: #f97316;
-  border: none;
-  padding: 6px 12px;
-  border-radius: 5px;
-  color: white;
-  cursor: pointer;
+.auth{
+display:flex;
+gap:12px;
+align-items:center;
+}
+
+.login{
+padding:10px 18px;
+border:1px solid #334155;
+border-radius:10px;
+color:white;
+text-decoration:none;
+cursor:pointer;
+transition:.2s;
+}
+
+.login:hover{
+border-color:#8b5cf6;
+color:#8b5cf6;
+}
+
+.register{
+background:#8b5cf6;
+border:none;
+padding:10px 18px;
+border-radius:10px;
+color:white;
+cursor:pointer;
+transition:.2s;
+}
+
+.register:hover{
+background:#7c3aed;
+transform:translateY(-2px);
 }

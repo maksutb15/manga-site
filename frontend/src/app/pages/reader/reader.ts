@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-reader',
@@ -13,20 +14,43 @@ export class Reader {
 
   manga = '';
   chapter = 1;
+  pdfUrl!: SafeResourceUrl;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private sanitizer: DomSanitizer
+  ) {}
 
   ngOnInit() {
-    this.manga = this.route.snapshot.paramMap.get('manga') || '';
-    this.chapter = Number(this.route.snapshot.paramMap.get('chapter'));
+    this.route.paramMap.subscribe(params => {
+      this.manga = params.get('manga') || '';
+      this.chapter = Number(params.get('chapter')) || 1;
+
+      this.loadPdf();
+    });
+  }
+
+  loadPdf() {
+    const path =
+      'assets/pdf/' +
+      this.manga +
+      '/chapter' +
+      this.chapter +
+      '.pdf';
+
+    this.pdfUrl =
+      this.sanitizer.bypassSecurityTrustResourceUrl(path);
   }
 
   nextChapter() {
-    this.chapter++;
+    this.router.navigate(['/read', this.manga, this.chapter + 1]);
   }
 
   prevChapter() {
-    if (this.chapter > 1) this.chapter--;
+    if (this.chapter > 1) {
+      this.router.navigate(['/read', this.manga, this.chapter - 1]);
+    }
   }
 
 }

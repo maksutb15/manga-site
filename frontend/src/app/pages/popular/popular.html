@@ -1,1 +1,25 @@
-<p>popular works!</p>
+
+<div class="popular-page">
+
+<h1>🔥 Top 10 Most Popular Manga Worldwide</h1>
+<p>The highest rated manga chosen by fans worldwide.</p>
+
+<div class="grid">
+
+<div class="card" *ngFor="let manga of mangas">
+
+<a [routerLink]="['/manga', manga.id]">
+
+<img [src]="manga.image">
+
+<h2>{{ manga.title }}</h2>
+
+<div class="rate">⭐ {{ manga.rating }}</div>
+
+</a>
+
+</div>
+
+</div>
+
+</div>
