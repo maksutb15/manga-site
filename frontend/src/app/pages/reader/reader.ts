@@ -32,25 +32,33 @@ export class Reader {
   }
 
   loadPdf() {
-    const path =
-      'assets/pdf/' +
-      this.manga +
-      '/chapter' +
-      this.chapter +
-      '.pdf';
 
-    this.pdfUrl =
-      this.sanitizer.bypassSecurityTrustResourceUrl(path);
-  }
+  const path =
+    'assets/pdf/' +
+    this.manga +
+    '/chapter' +
+    this.chapter +
+    '.pdf';
+
+  this.pdfUrl =
+    this.sanitizer.bypassSecurityTrustResourceUrl(path);
+}
 
   nextChapter() {
-    this.router.navigate(['/read', this.manga, this.chapter + 1]);
+    this.router.navigate([
+      '/read',
+      this.manga,
+      this.chapter + 1
+    ]);
   }
 
   prevChapter() {
     if (this.chapter > 1) {
-      this.router.navigate(['/read', this.manga, this.chapter - 1]);
+      this.router.navigate([
+        '/read',
+        this.manga,
+        this.chapter - 1
+      ]);
     }
   }
-
 }

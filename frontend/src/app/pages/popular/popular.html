@@ -1,25 +1,32 @@
-
 <div class="popular-page">
 
-<h1>🔥 Top 10 Most Popular Manga Worldwide</h1>
-<p>The highest rated manga chosen by fans worldwide.</p>
+  <h1>🔥 Top 10 Most Popular Manga Worldwide</h1>
+  <p>The highest rated manga chosen by fans worldwide.</p>
 
-<div class="grid">
+  <p *ngIf="loading" class="loading-text">
+    Loading popular manga...
+  </p>
 
-<div class="card" *ngFor="let manga of mangas">
+  <p *ngIf="error" class="error-text">
+    {{ error }}
+  </p>
 
-<a [routerLink]="['/manga', manga.id]">
+  <div class="grid" *ngIf="!loading && !error">
 
-<img [src]="manga.image">
+    <div class="card" *ngFor="let manga of mangas">
 
-<h2>{{ manga.title }}</h2>
+      <a [routerLink]="['/manga', manga.slug]">
 
-<div class="rate">⭐ {{ manga.rating }}</div>
+        <img [src]="manga.image">
 
-</a>
+        <h2>{{ manga.title }}</h2>
 
-</div>
+        <div class="rate">⭐ {{ manga.rating }}</div>
 
-</div>
+      </a>
+
+    </div>
+
+  </div>
 
 </div>

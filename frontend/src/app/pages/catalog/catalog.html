@@ -37,7 +37,7 @@
       <div
         class="manga-card"
         *ngFor="let manga of filteredMangas()"
-        [routerLink]="['/manga', manga.id]"
+        [routerLink]="['/manga', manga.slug]"
       >
 
         <img [src]="manga.image" [alt]="manga.title">
@@ -45,17 +45,16 @@
         <div class="manga-info">
           <h3>{{ manga.title }}</h3>
 
-          <p>
-            {{ manga.country }} • {{ manga.type }}
-          </p>
+          <p>{{ manga.country }} • {{ manga.type }}</p>
 
           <span>
-            {{ manga.genres.join(', ') }}
+            {{ manga.genres.map(g => g.name).join(', ') }}
           </span>
 
           <div class="rating">
             ⭐ {{ manga.rating }}
           </div>
+
         </div>
 
       </div>

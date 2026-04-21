@@ -2,10 +2,18 @@ from django.contrib.auth.models import User
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
+from rest_framework.views import APIView
+from rest_framework import status
 
-from .models import ForumPost, ForumReply
-from .serializers import ForumPostSerializer
+from .models import ForumPost, ForumReply, Manga, Genre
+from .serializers import (
+    ForumPostSerializer,
+    MangaSerializer,
+    GenreSerializer
+)
 
+
+# ---------- AUTH ----------
 
 @api_view(['POST'])
 def register(request):
@@ -13,9 +21,10 @@ def register(request):
         username=request.data['username'],
         password=request.data['password']
     )
-
     return Response({'message': 'registered'})
 
+
+# ---------- FORUM ----------
 
 @api_view(['GET'])
 def forum_posts(request):
@@ -32,7 +41,6 @@ def create_post(request):
         title=request.data['title'],
         text=request.data['text']
     )
-
     return Response({'message': 'created'})
 
 
@@ -48,6 +56,8 @@ def create_reply(request, post_id):
     )
 
     return Response({'message': 'reply added'})
+
+
 @api_view(['DELETE'])
 @permission_classes([IsAuthenticated])
 def delete_post(request, post_id):
@@ -57,8 +67,9 @@ def delete_post(request, post_id):
         return Response({'error': 'Not allowed'}, status=403)
 
     post.delete()
-
     return Response({'message': 'deleted'})
+
+
 @api_view(['PUT'])
 @permission_classes([IsAuthenticated])
 def edit_post(request, post_id):
@@ -72,29 +83,42 @@ def edit_post(request, post_id):
     post.save()
 
     return Response({'message': 'updated'})
-@api_view(['PUT'])
-@permission_classes([IsAuthenticated])
-def edit_post(request, post_id):
-    post = ForumPost.objects.get(id=post_id)
 
-    if post.user != request.user:
-        return Response({'error': 'Not allowed'}, status=403)
 
-    post.title = request.data['title']
-    post.text = request.data['text']
-    post.save()
+# ---------- MANGA API ----------
 
-    return Response({'message': 'updated'})
-@api_view(['PUT'])
-@permission_classes([IsAuthenticated])
-def edit_post(request, post_id):
-    post = ForumPost.objects.get(id=post_id)
+@api_view(['GET'])
+def manga_list(request):
+    mangas = Manga.objects.all()
+    serializer = MangaSerializer(mangas, many=True)
+    return Response(serializer.data)
 
-    if post.user != request.user:
-        return Response({'error': 'Not allowed'}, status=403)
 
-    post.title = request.data['title']
-    post.text = request.data['text']
-    post.save()
+@api_view(['GET'])
+def manga_detail(request, slug):
+    manga = Manga.objects.get(slug=slug)
+    serializer = MangaSerializer(manga)
+    return Response(serializer.data)
 
-    return Response({'message': 'updated'})
+
+@api_view(['GET'])
+def genre_list(request):
+    genres = Genre.objects.all()
+    serializer = GenreSerializer(genres, many=True)
+    return Response(serializer.data)
+
+
+class MangaListView(APIView):
+
+    def get(self, request):
+        mangas = Manga.objects.all()
+        serializer = MangaSerializer(mangas, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+class GenreListView(APIView):
+
+    def get(self, request):
+        genres = Genre.objects.all()
+        serializer = GenreSerializer(genres, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)

@@ -1,38 +1,78 @@
 .forum-page{
-  max-width:900px;
-  margin:auto;
-  padding:30px;
-  color:white;
+  max-width: 950px;
+  margin: auto;
+  padding: 40px 20px;
+  color: white;
+}
+
+.forum-page h1{
+  font-size: 42px;
+  margin-bottom: 30px;
+  color: #ffffff;
 }
 
 .create-post,
 .post{
-  background:#1a1a1a;
-  padding:20px;
-  border-radius:18px;
-  margin-bottom:20px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.08);
+  padding: 25px;
+  border-radius: 18px;
+  margin-bottom: 22px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+  backdrop-filter: blur(10px);
 }
 
-input,textarea{
-  width:100%;
-  margin:8px 0;
-  padding:10px;
-  border:none;
-  border-radius:10px;
+input,
+textarea{
+  width: 100%;
+  margin: 10px 0;
+  padding: 14px;
+  border: none;
+  outline: none;
+  border-radius: 12px;
+  font-size: 15px;
+  box-sizing: border-box;
+}
+
+textarea{
+  min-height: 120px;
+  resize: vertical;
 }
 
 button{
-  padding:10px 18px;
-  border:none;
-  border-radius:10px;
-  background:#8b3dff;
-  color:white;
-  cursor:pointer;
+  padding: 12px 22px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(90deg,#7c3aed,#9333ea);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+button:hover{
+  transform: translateY(-2px);
+  opacity: 0.95;
+}
+
+.post h2{
+  margin-bottom: 10px;
+  color: #ffffff;
+}
+
+.post p{
+  color: #d1d5db;
+  line-height: 1.6;
 }
 
 .reply{
-  margin-top:10px;
-  background:#222;
-  padding:10px;
-  border-radius:10px;
+  margin-top: 14px;
+  background: rgba(255,255,255,0.04);
+  padding: 14px;
+  border-radius: 12px;
+  color: #cbd5e1;
+}
+
+.reply + .reply{
+  margin-top: 10px;
 }

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-login',
@@ -19,30 +20,32 @@ export class Login {
 
   constructor(
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private cdr: ChangeDetectorRef
   ) {}
 
   login() {
-    this.error = '';
+  this.error = '';
 
-    this.http.post<any>('http://127.0.0.1:8000/api/login/', {
-      username: this.username,
-      password: this.password
-    }).subscribe({
-      next: (res) => {
+  this.http.post<any>('http://127.0.0.1:8000/api/login/', {
+    username: this.username,
+    password: this.password
+  }).subscribe({
+    next: (res) => {
 
-        if (typeof window !== 'undefined') {
-          localStorage.setItem('access', res.access);
-          localStorage.setItem('refresh', res.refresh);
-          localStorage.setItem('username', this.username);
-        }
-
-        this.router.navigate(['/']);
-      },
-
-      error: () => {
-        this.error = 'Wrong username or password';
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('access', res.access);
+        localStorage.setItem('refresh', res.refresh);
+        localStorage.setItem('username', this.username);
       }
-    });
-  }
+
+      this.router.navigate(['/']);
+    },
+
+    error: (err) => {
+  this.error = 'Wrong username or password';
+  this.cdr.detectChanges();
+}
+  });
+}
 }

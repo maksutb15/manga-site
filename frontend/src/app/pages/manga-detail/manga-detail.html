@@ -17,7 +17,7 @@
 
       <div class="genres">
         <span *ngFor="let g of manga.genres">
-          {{ g }}
+          {{ g.name }}
         </span>
       </div>
 
@@ -30,24 +30,24 @@
     <p>{{ manga.description }}</p>
   </div>
 
-    <div class="block">
-       <h2>Chapters</h2>
+  <div class="block">
 
-        <div class="chapter-list">
+    <h2>Chapters</h2>
 
-           <a
-      *ngFor="let ch of [1,2,3,4,5]"
-      class="chapter-item"
-      [routerLink]="['/read', manga.slug, ch]">
+    <div class="chapter-list">
 
-      📖 Chapter {{ ch }}
+      <a
+        *ngFor="let ch of [1,2,3,4,5]"
+        class="chapter-item"
+        [routerLink]="['/read', manga.slug, ch]">
 
-            </a>
+        📖 Chapter {{ ch }}
 
-        </div>
-     </div>
+      </a>
 
+    </div>
 
+  </div>
 
   <div class="block">
     <h2>Comments</h2>

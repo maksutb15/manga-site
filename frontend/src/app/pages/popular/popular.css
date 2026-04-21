@@ -56,3 +56,15 @@ margin-bottom:8px;
 color:#facc15;
 font-size:18px;
 }
+
+.loading-text{
+  color: white;
+  font-size: 18px;
+  margin-top: 30px;
+}
+
+.error-text{
+  color: red;
+  font-size: 18px;
+  margin-top: 30px;
+}

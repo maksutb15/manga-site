@@ -6,7 +6,7 @@
 
 <div class="card"
 *ngFor="let manga of popular"
-[routerLink]="['/manga', manga.id]">
+[routerLink]="['/manga', manga.slug]">
 
 <img [src]="manga.image">
 
@@ -28,7 +28,7 @@
 
 <div class="mini-card"
 *ngFor="let manga of korea"
-[routerLink]="['/manga', manga.id]">
+[routerLink]="['/manga', manga.slug]">
 
 <img [src]="manga.image">
 
@@ -51,7 +51,7 @@
 
 <div class="mini-card"
 *ngFor="let manga of japan"
-[routerLink]="['/manga', manga.id]">
+[routerLink]="['/manga', manga.slug]">
 
 <img [src]="manga.image">
 
@@ -74,7 +74,7 @@
 
 <div class="mini-card"
 *ngFor="let manga of china"
-[routerLink]="['/manga', manga.id]">
+[routerLink]="['/manga', manga.slug]">
 
 <img [src]="manga.image">
 

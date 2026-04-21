@@ -20,14 +20,15 @@ export class Profile {
     return 'Account';
   }
 
-  logout(): void {
-    if (typeof window !== 'undefined') {
-      localStorage.removeItem('access');
-      localStorage.removeItem('refresh');
-      localStorage.removeItem('username');
-    }
-
-    this.router.navigate(['/login']);
+logout(): void {
+  if (typeof window !== 'undefined') {
+    localStorage.removeItem('access');
+    localStorage.removeItem('refresh');
+    localStorage.removeItem('token');
+    localStorage.removeItem('username');
   }
+
+  this.router.navigate(['/login']);
+}
 
 }

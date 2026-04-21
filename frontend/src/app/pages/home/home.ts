@@ -1,33 +1,55 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { mangas } from '../../manga-data';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-home',
-  imports: [CommonModule, RouterLink],
+  standalone: true,
+  imports: [
+    CommonModule,
+    RouterLink,
+    HttpClientModule
+  ],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
 export class Home {
 
-  popular = mangas.filter(m =>
-    [
-      'Naruto',
-      'Bleach',
-      'Attack on Titan',
-      'Death Note',
-      'Lookism',
-      'Solo Leveling',
-      'Nano Machine',
-      'Blue Lock'
-    ].includes(m.title)
-  );
+  allManga: any[] = [];
 
-  korea = mangas.filter(m => m.country === 'Korea').slice(0,5);
+  popular: any[] = [];
+  korea: any[] = [];
+  japan: any[] = [];
+  china: any[] = [];
 
-  japan = mangas.filter(m => m.country === 'Japan').slice(0,5);
+  constructor(private http: HttpClient) {}
 
-  china = mangas.filter(m => m.country === 'China').slice(0,5);
+  ngOnInit() {
+
+    this.http.get<any[]>('http://127.0.0.1:8000/api/manga/')
+      .subscribe(data => {
+
+        this.allManga = data;
+
+        this.popular = data
+          .sort((a,b) => b.rating - a.rating)
+          .slice(0,8);
+
+        this.korea = data
+          .filter(m => m.country === 'Korea')
+          .slice(0,5);
+
+        this.japan = data
+          .filter(m => m.country === 'Japan')
+          .slice(0,5);
+
+        this.china = data
+          .filter(m => m.country === 'China')
+          .slice(0,5);
+
+      });
+
+  }
 
 }
