@@ -52,4 +52,26 @@ export class Home {
 
   }
 
+  getPrimaryGenre(manga: any): string {
+    const firstGenre = manga?.genres?.[0];
+
+    if (!firstGenre) {
+      return 'No genre';
+    }
+
+    return typeof firstGenre === 'string' ? firstGenre : firstGenre.name;
+  }
+
+  getShortDescription(manga: any): string {
+    const description = manga?.description?.trim();
+
+    if (!description) {
+      return 'No description yet.';
+    }
+
+    return description.length > 70
+      ? `${description.slice(0, 70)}...`
+      : description;
+  }
+
 }

@@ -24,6 +24,12 @@ def register(request):
     return Response({'message': 'registered'})
 
 
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def logout(request):
+    return Response({'message': 'logged out'})
+
+
 # ---------- FORUM ----------
 
 @api_view(['GET'])

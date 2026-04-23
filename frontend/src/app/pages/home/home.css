@@ -54,6 +54,11 @@ color:#9ca3af;
 font-size:14px;
 }
 
+.card-description{
+margin-top:8px;
+line-height:1.45;
+}
+
 /* countries */
 .country-grid{
 display:grid;
@@ -108,6 +113,13 @@ color:white;
 .mini-info span{
 font-size:13px;
 color:#9ca3af;
+}
+
+.mini-info p{
+margin:6px 0 0;
+font-size:13px;
+line-height:1.45;
+color:#b2b8c5;
 }
 
 /* tablet */

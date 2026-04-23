@@ -1,4 +1,14 @@
-<div class="detail-page" *ngIf="manga">
+<div class="detail-page">
+
+  <div *ngIf="loading" class="status-box">
+    Loading manga details...
+  </div>
+
+  <div *ngIf="!loading && error" class="status-box error-box">
+    {{ error }}
+  </div>
+
+  <div *ngIf="manga">
 
   <a routerLink="/catalog" class="back-btn">← Back to Catalog</a>
 
@@ -37,11 +47,12 @@
     <div class="chapter-list">
 
       <a
-        *ngFor="let ch of [1,2,3,4,5]"
+        *ngFor="let ch of getSortedChapters()"
         class="chapter-item"
-        [routerLink]="['/read', manga.slug, ch]">
+        [routerLink]="['/read', manga.slug, ch.number]">
 
-        📖 Chapter {{ ch }}
+        <span>📖 Chapter {{ ch.number }}</span>
+        <small>Open chapter in reader</small>
 
       </a>
 
@@ -50,12 +61,18 @@
   </div>
 
   <div class="block">
-    <h2>Comments</h2>
+    <h2>Discussion</h2>
 
-    <div class="comment">🔥 Amazing manga!</div>
-    <div class="comment">⭐ Must read!</div>
-    <div class="comment">💯 One of my favorites.</div>
+    <p class="discussion-text">
+      To leave a comment, open the forum page and create a post with the manga title in the heading, for example: "Naruto discussion" or "Best moments in Solo Leveling".
+    </p>
+    <p class="discussion-subtext">
+      That way all discussions stay in one backend-powered place instead of temporary frontend-only comments.
+    </p>
+    <a routerLink="/forum" class="forum-link">Go to forum discussion</a>
 
   </div>
+
+</div>
 
 </div>

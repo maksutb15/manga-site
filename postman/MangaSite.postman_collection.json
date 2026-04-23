@@ -1,0 +1,388 @@
+{
+  "info": {
+    "_postman_id": "1a8c8a8a-4d39-4f73-9f8a-1fef7ef0c001",
+    "name": "Manga Site API (Codex Simple)",
+    "description": "Simple Postman collection for the manga-site project using direct URLs and manual JWT token paste.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1) Auth",
+      "item": [
+        {
+          "name": "Register User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"demo_user\",\n  \"password\": \"demo_pass123\"\n}"
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/register/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "register",
+                ""
+              ]
+            },
+            "description": "Create a demo user before login."
+          }
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"demo_user\",\n  \"password\": \"demo_pass123\"\n}"
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/login/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "login",
+                ""
+              ]
+            },
+            "description": "Copy the access and refresh tokens from the response."
+          }
+        },
+        {
+          "name": "Refresh Token",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"refresh\": \"PASTE_REFRESH_TOKEN_HERE\"\n}"
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/refresh/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "refresh",
+                ""
+              ]
+            }
+          }
+        },
+        {
+          "name": "Logout",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer PASTE_ACCESS_TOKEN_HERE"
+              }
+            ],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/logout/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "logout",
+                ""
+              ]
+            },
+            "description": "Logout endpoint for authenticated users."
+          }
+        }
+      ]
+    },
+    {
+      "name": "2) Public",
+      "item": [
+        {
+          "name": "Get Manga List",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/manga/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "manga",
+                ""
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Manga Detail",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/manga/solo-leveling/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "manga",
+                "solo-leveling",
+                ""
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Genres",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/genres/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "genres",
+                ""
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Forum Posts",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/forum/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "forum",
+                ""
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "3) Protected Forum",
+      "item": [
+        {
+          "name": "Create Post",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer PASTE_ACCESS_TOKEN_HERE"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Post from Postman\",\n  \"text\": \"Hello, this is a demo forum post\"\n}"
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/forum/create/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "forum",
+                "create",
+                ""
+              ]
+            }
+          }
+        },
+        {
+          "name": "Reply to Post",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer PASTE_ACCESS_TOKEN_HERE"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"text\": \"Nice post!\"\n}"
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/forum/reply/1/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "forum",
+                "reply",
+                "1",
+                ""
+              ]
+            }
+          }
+        },
+        {
+          "name": "Edit Post",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer PASTE_ACCESS_TOKEN_HERE"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Updated title\",\n  \"text\": \"Updated text\"\n}"
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/forum/edit/1/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "forum",
+                "edit",
+                "1",
+                ""
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Post",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer PASTE_ACCESS_TOKEN_HERE"
+              }
+            ],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/forum/delete/1/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "forum",
+                "delete",
+                "1",
+                ""
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

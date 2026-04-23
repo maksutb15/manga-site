@@ -6,6 +6,7 @@ from rest_framework_simplejwt.views import (
 
 from .views import (
     register,
+    logout,
     forum_posts,
     create_post,
     create_reply,
@@ -23,6 +24,7 @@ urlpatterns = [
     path('register/', register),
     path('login/', TokenObtainPairView.as_view()),
     path('refresh/', TokenRefreshView.as_view()),
+    path('logout/', logout),
 
     # FORUM
     path('forum/', forum_posts),
